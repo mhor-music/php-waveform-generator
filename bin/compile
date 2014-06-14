@@ -1,0 +1,13 @@
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use WaveformGenerator\Compiler;
+
+try {
+    $compiler = new Compiler();
+    $compiler->compile();
+} catch (\Exception $e) {
+    echo 'Failed to compile phar: ['.get_class($e).'] '.$e->getMessage().' at '.$e->getFile().':'.$e->getLine();
+    exit(1);
+}
