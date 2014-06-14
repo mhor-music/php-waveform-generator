@@ -1,10 +1,12 @@
 <?php
 
-
 namespace WaveformGenerator\WaveformCreator;
 
-
-class WaveformCreator {
-
+/**
+ * Class WaveformCreator
+ * @package WaveformGenerator\WaveformCreator
+ */
+class WaveformCreator
+{
 }
  

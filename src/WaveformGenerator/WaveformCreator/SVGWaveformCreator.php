@@ -10,6 +10,5 @@ use WaveformGenerator\WaveformCreator\WaveformCreator;
  */
 class SVGWaveformCreator extends WaveformCreator
 {
-
 }
  

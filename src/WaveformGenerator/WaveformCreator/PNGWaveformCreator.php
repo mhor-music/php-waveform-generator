@@ -10,6 +10,5 @@ use WaveformGenerator\WaveformCreator\WaveformCreator;
  */
 class PNGWaveformCreator extends WaveformCreator
 {
-
 }
  

@@ -59,7 +59,5 @@ class FFMpegMusicFileConvert
     {
         return $this->convertedFilePath;
     }
-
-
 }
  
