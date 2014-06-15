@@ -26,8 +26,7 @@ class Compiler
             ->ignoreVCS(true)
             ->name('*.php')
             ->notName('Compiler.php')
-            ->in(__DIR__ . '/..')
-        ;
+            ->in(__DIR__ . '/..');
 
         foreach ($finder as $file) {
             $this->addFile($phar, $file);
@@ -38,8 +37,7 @@ class Compiler
             ->ignoreVCS(true)
             ->name('*.php')
             ->exclude('Tests')
-            ->in(__DIR__ . '/../../vendor/symfony/')
-        ;
+            ->in(__DIR__ . '/../../vendor/symfony/');
 
         foreach ($finder as $file) {
             $this->addFile($phar, $file);
@@ -51,7 +49,7 @@ class Compiler
         $this->addFile($phar, new \SplFileInfo(__DIR__ . '/../../vendor/composer/autoload_classmap.php'));
         $this->addFile($phar, new \SplFileInfo(__DIR__ . '/../../vendor/composer/autoload_real.php'));
         $this->addFile($phar, new \SplFileInfo(__DIR__ . '/../../vendor/composer/ClassLoader.php'));
-        $this->addFile($phar, new \SplFileInfo(__DIR__.'/../../vendor/composer/include_paths.php'));
+        $this->addFile($phar, new \SplFileInfo(__DIR__ . '/../../vendor/composer/include_paths.php'));
 
         $this->addAlreadyExtractBin($phar);
         $phar->setStub($this->getStub());

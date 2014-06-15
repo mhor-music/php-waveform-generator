@@ -1,26 +1,22 @@
 <?php
 
-namespace WaveformGenerator\Application;
+namespace Mp3WaveformGenerator\Application;
 
+use Mp3WaveformGenerator\Command\AlreadyExtractCommand;
 use Symfony\Component\Console\Application as ApplicationBase;
 use Symfony\Component\Console\Input\InputInterface;
-use WaveformGenerator\Command\WaveformGeneratorCommand;
 
-/**
- * Class Application
- * @package WaveformGenerator\Application
- */
 class Application extends ApplicationBase
 {
     protected function getCommandName(InputInterface $input)
     {
-        return 'waveform-generator';
+        return 'mp3-waveform-generator';
     }
 
     protected function getDefaultCommands()
     {
         $defaultCommands = parent::getDefaultCommands();
-        $defaultCommands[] = new WaveformGeneratorCommand();
+        $defaultCommands[] = new Mp3WaveformGeneratorCommand();
         return $defaultCommands;
     }
 

@@ -1,7 +1,6 @@
 <?php
 
 namespace WaveformGenerator\Configuration;
-use Symfony\Component\Process\Exception\RuntimeException;
 
 /**
  * Class Configuration
@@ -23,24 +22,19 @@ class FFMpegConfiguration
      * @param bool $isInstalled
      * @param $ffmpegPath
      */
-    public function __construct($isInstalled = true,  $ffmpegPath)
+    public function __construct($isInstalled = true, $ffmpegPath = null)
     {
         if ($isInstalled === false) {
             $this->isInstalled = false;
             $this->ffmpegPath = $ffmpegPath;
-        }
-
-        if ($this->check() === false) {
-            new RuntimeException("ffmpeg is not rightly configured");
         }
     }
 
     /**
      * @return bool
      */
-    private function check()
+    public function check()
     {
         return true;
     }
 }
- 

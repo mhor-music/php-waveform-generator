@@ -2,6 +2,8 @@
 
 namespace WaveformGenerator\Converter;
 
+use WaveformGenerator\Configuration\FFMpegConfiguration;
+
 /**
  * Class FFMpegMusicFileConvert
  * @package WaveformGenerator\Converter
@@ -23,6 +25,11 @@ class FFMpegMusicFileConvert
      */
     protected $programName = 'ffmpeg';
 
+    /**
+     * @var \WaveformGenerator\Configuration\FFMpegConfiguration
+     */
+    protected $configuration;
+
     protected $availableExtensions = array(
         'mp3',
         'flac',
@@ -36,12 +43,13 @@ class FFMpegMusicFileConvert
     protected $options = array('-i');
 
     /**
+     * @param \WaveformGenerator\Configuration\FFMpegConfiguration $conf
      * @param string $originalFilePath
      */
-    public function __construct($originalFilePath)
+    public function __construct(FFMpegConfiguration $conf, $originalFilePath)
     {
+        $this->configuration = $conf;
         $this->originalFilePath = $originalFilePath;
-        return null;
     }
 
     /**
@@ -53,10 +61,20 @@ class FFMpegMusicFileConvert
     }
 
     /**
+     * @return bool
+     */
+    public function isWavFile()
+    {
+        return true;
+    }
+
+    /**
      * @return string
      */
     public function convert()
     {
+        $this->convertedFilePath = uniqid() . '.wav';
+
         return $this->convertedFilePath;
     }
 }

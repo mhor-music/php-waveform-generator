@@ -8,6 +8,6 @@ try {
     $compiler = new Compiler();
     $compiler->compile();
 } catch (\Exception $e) {
-    echo 'Failed to compile phar: ['.get_class($e).'] '.$e->getMessage().' at '.$e->getFile().':'.$e->getLine();
+    echo 'Failed to compile phar: [' . get_class($e) . '] ' . $e->getMessage() . ' at ' . $e->getFile() . ':' . $e->getLine();
     exit(1);
 }
