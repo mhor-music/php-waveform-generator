@@ -21,16 +21,56 @@ class WaveformConfiguration
     /**
      * @var int
      */
-    protected $quality = 5;
+    protected $quality = 300;
 
     /**
      * @var string
      */
-    protected $backgroundColor = '#FFFFFF';
+    protected $backgroundColor = '#68ADE0';
 
     /**
      * @var string
      */
-    protected $foregroundColor = '#FF000';
+    protected $foregroundColor = '#0076B9';
+
+    /**
+     * @return string
+     */
+    public function getBackgroundColor()
+    {
+        return $this->backgroundColor;
+    }
+
+    /**
+     * @return string
+     */
+    public function getForegroundColor()
+    {
+        return $this->foregroundColor;
+    }
+
+    /**
+     * @return int
+     */
+    public function getHeight()
+    {
+        return $this->height;
+    }
+
+    /**
+     * @return int
+     */
+    public function getQuality()
+    {
+        return $this->quality;
+    }
+
+    /**
+     * @return int
+     */
+    public function getWidth()
+    {
+        return $this->width;
+    }
 }
  

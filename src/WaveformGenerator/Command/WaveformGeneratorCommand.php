@@ -7,12 +7,13 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use WaveformGenerator\Configuration\FFMpegConfiguration;
 use WaveformGenerator\Configuration\WaveformConfiguration;
 use WaveformGenerator\Converter\FFMpegMusicFileConvert;
 use WaveformGenerator\Reader\WavReader;
-use WaveformGenerator\WaveformDrawer\PNGWaveformDrawer;
-use WaveformGenerator\WaveformDrawer\SVGWaveformDrawer;
+use WaveformGenerator\Drawer\PNGWaveformDrawer;
+use WaveformGenerator\Drawer\SVGWaveformDrawer;
 
 /**
  * Class WaveformGeneratorCommand
@@ -44,7 +45,7 @@ class WaveformGeneratorCommand extends Command
             )
             ->addOption(
                 'height',
-                'h',
+                'hi',
                 InputOption::VALUE_REQUIRED,
                 'Waveform height',
                 '100'
@@ -119,7 +120,6 @@ class WaveformGeneratorCommand extends Command
         if ($input->getOption('svg')) {
             $waveformDrawerSVG = new SVGWaveformDrawer($waveformConf, $waveReader);
             $waveformDrawerSVG->draw();
-            $waveformDrawerSVG->save();
         }
 
         if ($remove) {

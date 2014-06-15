@@ -1,8 +1,6 @@
 <?php
 
-namespace WaveformGenerator\WaveformDrawer;
-
-use WaveformGenerator\WaveformDrawer;
+namespace WaveformGenerator\Drawer;
 
 /**
  * Class SVGWaveformDrawer

@@ -1,6 +1,6 @@
 <?php
 
-namespace WaveformGenerator\WaveformDrawer;
+namespace WaveformGenerator\Drawer;
 
 use WaveformGenerator\Configuration\WaveformConfiguration;
 use WaveformGenerator\Reader\WavReader;
@@ -20,6 +20,11 @@ class WaveformDrawer
      * @var \WaveformGenerator\Reader\WavReader
      */
     protected $wavReader;
+
+    /**
+     * @var resource
+     */
+    protected $image;
 
     /**
      * @param WaveformConfiguration $waveformConfiguration
