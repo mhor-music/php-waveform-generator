@@ -33,8 +33,13 @@ class WaveformGeneratorCommand extends Command
             ->setDescription('generate waveform image from music file')
             ->addArgument(
                 'path',
-                InputArgument::OPTIONAL,
+                InputArgument::REQUIRED,
                 'path of music file'
+            )
+            ->addArgument(
+                'waveform-path',
+                InputArgument::OPTIONAL,
+                'path of waveform file (without extension)'
             )
             ->addOption(
                 'temp-dir',
@@ -72,6 +77,12 @@ class WaveformGeneratorCommand extends Command
                 '#000000'
             )
             ->addOption(
+                'stereo',
+                null,
+                InputOption::VALUE_NONE,
+                'Waveform for right & left'
+            )
+            ->addOption(
                 'png',
                 null,
                 InputOption::VALUE_NONE,
@@ -107,7 +118,16 @@ class WaveformGeneratorCommand extends Command
             $remove = true;
         }
 
+        $pathInfo = pathinfo($file);
         $waveformConf = new WaveformConfiguration();
+
+        $fileName = $pathInfo['filename'];
+        if ($input->getArgument('waveform-path') != null) {
+            $fileName = $input->getArgument('waveform-path');
+        }
+        $waveformConf->setWaveformFile($fileName);
+
+
         $waveReader = new WavReader($file);
         $waveReader->read();
 
@@ -120,6 +140,7 @@ class WaveformGeneratorCommand extends Command
         if ($input->getOption('svg')) {
             $waveformDrawerSVG = new SVGWaveformDrawer($waveformConf, $waveReader);
             $waveformDrawerSVG->draw();
+            $waveformDrawerSVG->save();
         }
 
         if ($remove) {

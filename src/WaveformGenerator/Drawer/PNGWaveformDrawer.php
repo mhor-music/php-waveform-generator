@@ -57,7 +57,7 @@ class PNGWaveformDrawer extends WaveformDrawer
 
     public function save()
     {
-        imagepng($this->image, 'tests.png');
+        imagepng($this->image, $this->waveformConfiguration->getWaveformFile() . '.png');
         imagedestroy($this->image);
     }
 

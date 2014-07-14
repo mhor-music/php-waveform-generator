@@ -112,43 +112,11 @@ class WavReader
     }
 
     /**
-     * @return resource
-     */
-    public function getHandler()
-    {
-        return $this->handler;
-    }
-
-    /**
-     * @return array
-     */
-    public function getHeading()
-    {
-        return $this->heading;
-    }
-
-    /**
      * @return boolean
      */
     public function isIsStereo()
     {
         return $this->isStereo;
-    }
-
-    /**
-     * @return float
-     */
-    public function getPeek()
-    {
-        return $this->peek;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRatio()
-    {
-        return $this->ratio;
     }
 
     /**
