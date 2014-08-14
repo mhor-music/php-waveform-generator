@@ -59,6 +59,10 @@ class Compiler
         unset($phar);
     }
 
+    /**
+     * @param \Phar $phar
+     * @param $file
+     */
     private function addFile($phar, $file)
     {
         $path = strtr(str_replace(dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR, '', $file->getRealPath()), '\\', '/');
@@ -69,6 +73,9 @@ class Compiler
         $phar->addFromString($path, $content);
     }
 
+    /**
+     * @param \Phar $phar
+     */
     private function addAlreadyExtractBin($phar)
     {
         $content = file_get_contents(__DIR__ . '/../../bin/already-extract');

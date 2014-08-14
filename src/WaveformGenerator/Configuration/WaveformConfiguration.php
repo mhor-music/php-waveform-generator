@@ -14,17 +14,17 @@ class WaveformConfiguration
     protected $waveformFile;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $height = 100;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $width = 500;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $quality = 10;
 
@@ -77,7 +77,7 @@ class WaveformConfiguration
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getHeight()
     {
@@ -85,7 +85,7 @@ class WaveformConfiguration
     }
 
     /**
-     * @param  int $height
+     * @param  integer $height
      * @return WaveformConfiguration
      */
     public function setHeight($height)
@@ -96,7 +96,7 @@ class WaveformConfiguration
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getQuality()
     {
@@ -104,7 +104,7 @@ class WaveformConfiguration
     }
 
     /**
-     * @param  int $quality
+     * @param  integer $quality
      * @return WaveformConfiguration
      */
     public function setQuality($quality)
@@ -134,7 +134,7 @@ class WaveformConfiguration
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getWidth()
     {
@@ -142,7 +142,7 @@ class WaveformConfiguration
     }
 
     /**
-     * @param  int $width
+     * @param  integer $width
      * @return WaveformConfiguration
      */
     public function setWidth($width)

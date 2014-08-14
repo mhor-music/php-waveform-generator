@@ -9,15 +9,19 @@ namespace WaveformGenerator\Reader;
 class DataPoint
 {
     /**
-     * @var int
+     * @var integer
      */
     protected $data;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $dataPoint;
 
+    /**
+     * @param integer $data
+     * @param integer $dataPoint
+     */
     public function __construct($data, $dataPoint)
     {
         $this->data = $data;
@@ -25,7 +29,7 @@ class DataPoint
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getData()
     {
@@ -33,7 +37,7 @@ class DataPoint
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getDataPoint()
     {

@@ -12,12 +12,12 @@ use WaveformGenerator\Reader\WavReader;
 class WaveformDrawer
 {
     /**
-     * @var \WaveformGenerator\Configuration\WaveformConfiguration
+     * @var WaveformConfiguration
      */
     protected $waveformConfiguration;
 
     /**
-     * @var \WaveformGenerator\Reader\WavReader
+     * @var WavReader
      */
     protected $wavReader;
 
@@ -45,7 +45,7 @@ class WaveformDrawer
     }
 
     /**
-     * @param $input
+     * @param string $input
      * @return array
      */
     protected function html2rgb($input)

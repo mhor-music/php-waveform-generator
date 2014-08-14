@@ -24,7 +24,7 @@ class WavReader
     protected $heading;
 
     /**
-     * @var float
+     * @var float|integer
      */
     protected $peek;
 
@@ -34,17 +34,17 @@ class WavReader
     protected $isStereo;
 
     /**
-     * @var float
+     * @var float|integer
      */
     protected $byte;
 
     /**
-     * @var int
+     * @var float|integer
      */
     protected $channel;
 
     /**
-     * @var int
+     * @var float|integer
      */
     protected $ratio;
 
@@ -54,12 +54,12 @@ class WavReader
     protected $handler;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $dataPoint;
 
     /**
-     * @var int
+     * @var float
      */
     protected $dataSize;
 
@@ -80,7 +80,7 @@ class WavReader
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getChannel()
     {
@@ -96,7 +96,7 @@ class WavReader
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getDataPoint()
     {
@@ -104,7 +104,7 @@ class WavReader
     }
 
     /**
-     * @return int
+     * @return double
      */
     public function getDataSize()
     {
@@ -155,6 +155,11 @@ class WavReader
         $this->heading[] = bin2hex(fread($this->handler, 4));
     }
 
+    /**
+     * @param $byte1
+     * @param $byte2
+     * @return double
+     */
     protected function findValues($byte1, $byte2)
     {
         $byte1 = hexdec(bin2hex($byte1));

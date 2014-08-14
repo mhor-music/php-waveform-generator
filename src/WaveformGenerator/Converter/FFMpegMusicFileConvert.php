@@ -5,7 +5,6 @@ namespace WaveformGenerator\Converter;
 use FFMpeg\FFMpeg;
 use FFMpeg\Format\Audio\Wav;
 use FFMpeg\Media\Audio;
-use WaveformGenerator\Configuration\FFMpegConfiguration;
 
 /**
  * Class FFMpegMusicFileConvert

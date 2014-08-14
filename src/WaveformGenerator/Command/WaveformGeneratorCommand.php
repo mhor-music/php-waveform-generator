@@ -8,7 +8,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
-use WaveformGenerator\Configuration\FFMpegConfiguration;
 use WaveformGenerator\Configuration\WaveformConfiguration;
 use WaveformGenerator\Converter\FFMpegMusicFileConvert;
 use WaveformGenerator\Reader\WavReader;
@@ -97,6 +96,12 @@ class WaveformGeneratorCommand extends Command
         ;
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|null|void
+     * @throws \Exception
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $fs = new Filesystem();
@@ -132,5 +137,7 @@ class WaveformGeneratorCommand extends Command
             $waveformDrawerSVG->draw();
             $waveformDrawerSVG->save();
         }
+        
+        $fs->remove($file);
     }
 }
