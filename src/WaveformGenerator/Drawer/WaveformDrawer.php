@@ -28,7 +28,7 @@ class WaveformDrawer
 
     /**
      * @param WaveformConfiguration $waveformConfiguration
-     * @param WavReader $wavReader
+     * @param WavReader             $wavReader
      */
     public function __construct(WaveformConfiguration $waveformConfiguration, WavReader $wavReader)
     {
@@ -51,6 +51,7 @@ class WaveformDrawer
     protected function html2rgb($input)
     {
         $input = ($input[0] == "#") ? substr($input, 1, 6) : substr($input, 0, 6);
+
         return array(
             hexdec(substr($input, 0, 2)),
             hexdec(substr($input, 2, 2)),
@@ -58,4 +59,3 @@ class WaveformDrawer
         );
     }
 }
- 

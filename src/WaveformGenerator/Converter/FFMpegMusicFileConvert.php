@@ -2,6 +2,9 @@
 
 namespace WaveformGenerator\Converter;
 
+use FFMpeg\FFMpeg;
+use FFMpeg\Format\Audio\Wav;
+use FFMpeg\Media\Audio;
 use WaveformGenerator\Configuration\FFMpegConfiguration;
 
 /**
@@ -11,61 +14,23 @@ use WaveformGenerator\Configuration\FFMpegConfiguration;
 class FFMpegMusicFileConvert
 {
     /**
-     * @var string
+     * @var FFMpeg
      */
-    protected $originalFilePath;
+    protected $ffmpeg;
 
     /**
-     * @var string
+     * @var Audio
      */
-    protected $convertedFilePath;
+    protected $audio;
 
     /**
-     * @var string
+     * @param $originalFilePath
+     * @param array $configuration
      */
-    protected $programName = 'ffmpeg';
-
-    /**
-     * @var \WaveformGenerator\Configuration\FFMpegConfiguration
-     */
-    protected $configuration;
-
-    protected $availableExtensions = array(
-        'mp3',
-        'flac',
-        'ogg',
-        'wma'
-    );
-
-    /**
-     * @var array
-     */
-    protected $options = array('-i');
-
-    /**
-     * @param \WaveformGenerator\Configuration\FFMpegConfiguration $conf
-     * @param string $originalFilePath
-     */
-    public function __construct(FFMpegConfiguration $conf, $originalFilePath)
+    public function __construct($originalFilePath, $configuration = array())
     {
-        $this->configuration = $conf;
-        $this->originalFilePath = $originalFilePath;
-    }
-
-    /**
-     * @return bool
-     */
-    public function checkExtension()
-    {
-        return true;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isWavFile()
-    {
-        return true;
+        $this->ffmpeg = FFMpeg::create($configuration);
+        $this->audio = $this->ffmpeg->open($originalFilePath);
     }
 
     /**
@@ -73,9 +38,14 @@ class FFMpegMusicFileConvert
      */
     public function convert()
     {
-        $this->convertedFilePath = uniqid() . '.wav';
+        $format = new Wav();
+        $format
+            ->setAudioChannels(1)
+            ->setAudioKiloBitrate(16)
+        ;
 
-        return $this->convertedFilePath;
+        $tmpFile = sys_get_temp_dir() . '/' . uniqid() . '.wav';
+        $this->audio->save($format, $tmpFile);
+        return $tmpFile;
     }
 }
- 

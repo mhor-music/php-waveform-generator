@@ -18,7 +18,7 @@ class DataPoint
      */
     protected $dataPoint;
 
-    function __construct($data, $dataPoint)
+    public function __construct($data, $dataPoint)
     {
         $this->data = $data;
         $this->dataPoint = $dataPoint;
@@ -40,4 +40,3 @@ class DataPoint
         return $this->dataPoint;
     }
 }
- 

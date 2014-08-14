@@ -84,4 +84,3 @@ class SVGWaveformDrawer extends WaveformDrawer
     }
 
 }
- 

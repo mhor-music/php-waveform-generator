@@ -20,7 +20,7 @@ class PNGWaveformDrawer extends WaveformDrawer
                 $this->image,
                 0,
                 0,
-                (int)($this->wavReader->getDataSize() / $this->waveformConfiguration->getQuality()),
+                (int) ($this->wavReader->getDataSize() / $this->waveformConfiguration->getQuality()),
                 $this->waveformConfiguration->getHeight(),
                 imagecolorallocate($this->image, $br, $bg, $bb)
             );
@@ -41,13 +41,13 @@ class PNGWaveformDrawer extends WaveformDrawer
 
         foreach ($this->wavReader->getData() as $point) {
 
-            $v = (int)($point->getData() / 255 * $this->waveformConfiguration->getHeight());
+            $v = (int) ($point->getData() / 255 * $this->waveformConfiguration->getHeight());
             if (!($v / $this->waveformConfiguration->getHeight() == 0.5)) {
                 imageline(
                     $this->image,
-                    (int)($point->getDataPoint() / $this->waveformConfiguration->getQuality()),
+                    (int) ($point->getDataPoint() / $this->waveformConfiguration->getQuality()),
                     $this->waveformConfiguration->getHeight() * 1 - $v,
-                    (int)($point->getDataPoint() / $this->waveformConfiguration->getQuality()),
+                    (int) ($point->getDataPoint() / $this->waveformConfiguration->getQuality()),
                     $this->waveformConfiguration->getHeight() * 1 - ($this->waveformConfiguration->getHeight() - $v),
                     imagecolorallocate($this->image, $r, $g, $b)
                 );
@@ -68,4 +68,3 @@ class PNGWaveformDrawer extends WaveformDrawer
         $this->drawDatas();
     }
 }
- 

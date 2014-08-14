@@ -159,10 +159,11 @@ class WavReader
     {
         $byte1 = hexdec(bin2hex($byte1));
         $byte2 = hexdec(bin2hex($byte2));
+
         return ($byte1 + ($byte2 * 256));
     }
 
-    protected  function getBitrate()
+    protected function getBitrate()
     {
         $this->peek = hexdec(substr($this->heading[10], 0, 2));
         $this->byte = $this->peek / 8;
@@ -174,14 +175,14 @@ class WavReader
 
     protected function getDataPoints()
     {
-        while(!feof($this->handler) && $this->dataPoint < $this->dataSize){
+        while (!feof($this->handler) && $this->dataPoint < $this->dataSize) {
             if ($this->dataPoint++ % 5 == 0) {
                 $bytes = array();
                 for ($i = 0; $i < $this->byte; $i++) {
                     $bytes[$i] = fgetc($this->handler);
                 }
 
-                switch($this->byte){
+                switch ($this->byte) {
                     case 1:
                         $this->data[] = new DataPoint(
                             $this->findValues($bytes[0], $bytes[1]),
@@ -189,7 +190,7 @@ class WavReader
                         );
                         break;
                     case 2:
-                        if(ord($bytes[1]) & 128) {
+                        if (ord($bytes[1]) & 128) {
                             $temp = 0;
                         } else {
                             $temp = 128;
@@ -210,4 +211,3 @@ class WavReader
         }
     }
 }
- 

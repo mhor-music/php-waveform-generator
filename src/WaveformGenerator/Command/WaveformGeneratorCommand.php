@@ -105,28 +105,18 @@ class WaveformGeneratorCommand extends Command
         }
 
         $file = $input->getArgument('path');
-
-        $conf = new FFMpegConfiguration();
-        $conf->check();
-
-        $converter = new FFMpegMusicFileConvert($conf, $file);
-
-        $remove = false;
-        if (!$converter->isWavFile()) {
-            $converter->checkExtension();
-            $file = $converter->convert();
-            $remove = true;
-        }
-
         $pathInfo = pathinfo($file);
+        $fileName = $pathInfo['filename'];
+
+        $converter = new FFMpegMusicFileConvert($file);
+        $file = $converter->convert();
+
         $waveformConf = new WaveformConfiguration();
 
-        $fileName = $pathInfo['filename'];
         if ($input->getArgument('waveform-path') != null) {
             $fileName = $input->getArgument('waveform-path');
         }
         $waveformConf->setWaveformFile($fileName);
-
 
         $waveReader = new WavReader($file);
         $waveReader->read();
@@ -141,10 +131,6 @@ class WaveformGeneratorCommand extends Command
             $waveformDrawerSVG = new SVGWaveformDrawer($waveformConf, $waveReader);
             $waveformDrawerSVG->draw();
             $waveformDrawerSVG->save();
-        }
-
-        if ($remove) {
-            $fs->remove($file);
         }
     }
 }

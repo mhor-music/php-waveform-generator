@@ -21,6 +21,7 @@ class Application extends ApplicationBase
     {
         $defaultCommands = parent::getDefaultCommands();
         $defaultCommands[] = new WaveformGeneratorCommand();
+
         return $defaultCommands;
     }
 
@@ -28,7 +29,7 @@ class Application extends ApplicationBase
     {
         $inputDefinition = parent::getDefinition();
         $inputDefinition->setArguments();
+
         return $inputDefinition;
     }
 }
- 

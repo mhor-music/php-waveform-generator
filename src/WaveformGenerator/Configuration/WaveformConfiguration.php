@@ -26,7 +26,7 @@ class WaveformConfiguration
     /**
      * @var int
      */
-    protected $quality = 300;
+    protected $quality = 10;
 
     /**
      * @var string
@@ -47,12 +47,13 @@ class WaveformConfiguration
     }
 
     /**
-     * @param string $backgroundColor
+     * @param  string $backgroundColor
      * @return WaveformConfiguration
      */
     public function setBackgroundColor($backgroundColor)
     {
         $this->backgroundColor = $backgroundColor;
+
         return $this;
     }
 
@@ -65,12 +66,13 @@ class WaveformConfiguration
     }
 
     /**
-     * @param string $foregroundColor
+     * @param  string $foregroundColor
      * @return waveformconfiguration
      */
     public function setForegroundColor($foregroundColor)
     {
         $this->foregroundColor = $foregroundColor;
+
         return $this;
     }
 
@@ -83,12 +85,13 @@ class WaveformConfiguration
     }
 
     /**
-     * @param int $height
+     * @param  int $height
      * @return WaveformConfiguration
      */
     public function setHeight($height)
     {
         $this->height = $height;
+
         return $this;
     }
 
@@ -101,12 +104,13 @@ class WaveformConfiguration
     }
 
     /**
-     * @param int $quality
+     * @param  int $quality
      * @return WaveformConfiguration
      */
     public function setQuality($quality)
     {
         $this->quality = $quality;
+
         return $this;
     }
 
@@ -119,12 +123,13 @@ class WaveformConfiguration
     }
 
     /**
-     * @param string $waveformFile
+     * @param  string $waveformFile
      * @return WaveformConfiguration
      */
     public function setWaveformFile($waveformFile)
     {
         $this->waveformFile = $waveformFile;
+
         return $this;
     }
 
@@ -137,13 +142,13 @@ class WaveformConfiguration
     }
 
     /**
-     * @param int $width
+     * @param  int $width
      * @return WaveformConfiguration
      */
     public function setWidth($width)
     {
         $this->width = $width;
+
         return $this;
     }
 }
- 
