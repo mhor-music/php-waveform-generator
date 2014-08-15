@@ -13,6 +13,8 @@
         "symfony/filesystem": "~2.3",
         "symfony/console" : "~2.3",
         "symfony/process": "~2.3",
+        "symfony/yaml": "~2.3",
+        "symfony/property-access": "~2.3",
         "php-ffmpeg/php-ffmpeg": "@stable"
     },
     "require-dev": {

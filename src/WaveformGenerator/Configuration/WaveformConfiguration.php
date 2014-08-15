@@ -3,6 +3,7 @@
 namespace WaveformGenerator\Configuration;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
+use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Parser;
 
 /**
@@ -37,14 +38,14 @@ class WaveformConfiguration
     protected $backgroundColor;
 
     /**
-     * @var PropertyAccessor
-     */
-    protected $accessor;
-
-    /**
      * @var string
      */
     protected $foregroundColor;
+
+    /**
+     * @var PropertyAccessor
+     */
+    protected $accessor;
 
     public function __construct($options)
     {
