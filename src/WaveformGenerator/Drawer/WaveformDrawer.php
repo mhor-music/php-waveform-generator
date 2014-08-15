@@ -45,7 +45,7 @@ class WaveformDrawer
     }
 
     /**
-     * @param string $input
+     * @param  string $input
      * @return array
      */
     protected function html2rgb($input)

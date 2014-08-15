@@ -1,6 +1,9 @@
 <?php
 
 namespace WaveformGenerator\Configuration;
+use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\PropertyAccess\PropertyAccessor;
+use Symfony\Component\Yaml\Parser;
 
 /**
  * Class WaveformConfiguration
@@ -16,12 +19,12 @@ class WaveformConfiguration
     /**
      * @var integer
      */
-    protected $height = 100;
+    protected $height;
 
     /**
      * @var integer
      */
-    protected $width = 500;
+    protected $width;
 
     /**
      * @var integer
@@ -31,12 +34,24 @@ class WaveformConfiguration
     /**
      * @var string
      */
-    protected $backgroundColor = '#68ADE0';
+    protected $backgroundColor;
+
+    /**
+     * @var PropertyAccessor
+     */
+    protected $accessor;
 
     /**
      * @var string
      */
-    protected $foregroundColor = '#0076B9';
+    protected $foregroundColor;
+
+    public function __construct($options)
+    {
+        $configuration = $this->getParameters($options);
+        $this->accessor = PropertyAccess::createPropertyAccessor();
+        $this->fill($configuration);
+    }
 
     /**
      * @return string
@@ -47,7 +62,7 @@ class WaveformConfiguration
     }
 
     /**
-     * @param  string $backgroundColor
+     * @param  string                $backgroundColor
      * @return WaveformConfiguration
      */
     public function setBackgroundColor($backgroundColor)
@@ -66,7 +81,7 @@ class WaveformConfiguration
     }
 
     /**
-     * @param  string $foregroundColor
+     * @param  string                $foregroundColor
      * @return waveformconfiguration
      */
     public function setForegroundColor($foregroundColor)
@@ -85,7 +100,7 @@ class WaveformConfiguration
     }
 
     /**
-     * @param  integer $height
+     * @param  integer               $height
      * @return WaveformConfiguration
      */
     public function setHeight($height)
@@ -104,7 +119,7 @@ class WaveformConfiguration
     }
 
     /**
-     * @param  integer $quality
+     * @param  integer               $quality
      * @return WaveformConfiguration
      */
     public function setQuality($quality)
@@ -123,7 +138,7 @@ class WaveformConfiguration
     }
 
     /**
-     * @param  string $waveformFile
+     * @param  string                $waveformFile
      * @return WaveformConfiguration
      */
     public function setWaveformFile($waveformFile)
@@ -142,7 +157,7 @@ class WaveformConfiguration
     }
 
     /**
-     * @param  integer $width
+     * @param  integer               $width
      * @return WaveformConfiguration
      */
     public function setWidth($width)
@@ -150,5 +165,36 @@ class WaveformConfiguration
         $this->width = $width;
 
         return $this;
+    }
+
+    /**
+     * @param  array $options
+     * @return array
+     */
+    protected function getParameters($options)
+    {
+        $configuration = array();
+        if ($options['configuration'] && file_exists($options['configuration'])) {
+            $yaml = new Parser();
+            try {
+                $configuration = $yaml->parse(file_get_contents($options['configuration']));
+            } catch (ParseException $e) {
+                printf("Unable to parse the YAML string: %s", $e->getMessage());
+            }
+        }
+
+        return array_merge($options, $configuration);
+    }
+
+    /**
+     * @param array $configuration
+     */
+    protected function fill($configuration)
+    {
+        foreach ($configuration as $key => $value) {
+            if ($this->accessor->isWritable($this, $key)) {
+                $this->accessor->setValue($this, $key, $value);
+            }
+        }
     }
 }

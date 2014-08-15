@@ -41,7 +41,7 @@ class WaveformGeneratorCommand extends Command
                 'path of waveform file (without extension)'
             )
             ->addOption(
-                'temp-dir',
+                'temp_dir',
                 'tmp',
                 InputOption::VALUE_REQUIRED,
                 'Where you near to store WAV file',
@@ -62,18 +62,18 @@ class WaveformGeneratorCommand extends Command
                 '500'
             )
             ->addOption(
-                'foreground-color',
+                'foreground_color',
                 'fc',
                 InputOption::VALUE_REQUIRED,
                 'Waveform foreground color',
-                '#FFFFFF'
+                '#0076B9'
             )
             ->addOption(
-                'background-color',
+                'background_color',
                 'bc',
                 InputOption::VALUE_REQUIRED,
                 'Waveform background color',
-                '#000000'
+                '#68ADE0'
             )
             ->addOption(
                 'stereo',
@@ -93,12 +93,18 @@ class WaveformGeneratorCommand extends Command
                 InputOption::VALUE_NONE,
                 'Export waveform to SVG'
             )
+            ->addOption(
+                'configuration',
+                'c',
+                InputOption::VALUE_REQUIRED,
+                'Yaml config file (will override cli parameters)'
+            )
         ;
     }
 
     /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
+     * @param  InputInterface  $input
+     * @param  OutputInterface $output
      * @return int|null|void
      * @throws \Exception
      */
@@ -116,7 +122,7 @@ class WaveformGeneratorCommand extends Command
         $converter = new FFMpegMusicFileConvert($file);
         $file = $converter->convert();
 
-        $waveformConf = new WaveformConfiguration();
+        $waveformConf = new WaveformConfiguration($input->getOptions());
 
         if ($input->getArgument('waveform-path') != null) {
             $fileName = $input->getArgument('waveform-path');
@@ -137,7 +143,7 @@ class WaveformGeneratorCommand extends Command
             $waveformDrawerSVG->draw();
             $waveformDrawerSVG->save();
         }
-        
+
         $fs->remove($file);
     }
 }

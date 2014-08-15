@@ -45,6 +45,7 @@ class FFMpegMusicFileConvert
 
         $tmpFile = sys_get_temp_dir() . '/' . uniqid() . '.wav';
         $this->audio->save($format, $tmpFile);
+
         return $tmpFile;
     }
 }

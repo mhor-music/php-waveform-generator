@@ -187,32 +187,39 @@ class WavReader
                     $bytes[$i] = fgetc($this->handler);
                 }
 
-                switch ($this->byte) {
-                    case 1:
-                        $this->data[] = new DataPoint(
-                            $this->findValues($bytes[0], $bytes[1]),
-                            $this->dataPoint
-                        );
-                        break;
-                    case 2:
-                        if (ord($bytes[1]) & 128) {
-                            $temp = 0;
-                        } else {
-                            $temp = 128;
-                        }
-                        $temp = chr((ord($bytes[1]) & 127) + $temp);
-                        $this->data[] = new DataPoint(
-                            floor($this->findValues($bytes[0], $temp) / 256),
-                            $this->dataPoint
-                        );
-                        break;
-                }
+                $this->fillData($bytes);
 
                 fseek($this->handler, $this->ratio, SEEK_CUR);
-
             } else {
                 fseek($this->handler, $this->ratio + $this->byte, SEEK_CUR);
             }
+        }
+    }
+
+    /**
+     * @param array $bytes
+     */
+    private function fillData($bytes)
+    {
+        switch ($this->byte) {
+            case 1:
+                $this->data[] = new DataPoint(
+                    $this->findValues($bytes[0], $bytes[1]),
+                    $this->dataPoint
+                );
+                break;
+            case 2:
+                if (ord($bytes[1]) & 128) {
+                    $temp = 0;
+                } else {
+                    $temp = 128;
+                }
+                $temp = chr((ord($bytes[1]) & 127) + $temp);
+                $this->data[] = new DataPoint(
+                    floor($this->findValues($bytes[0], $temp) / 256),
+                    $this->dataPoint
+                );
+                break;
         }
     }
 }
