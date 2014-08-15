@@ -5,5 +5,15 @@
 Generate waveform picture of music file
 Inspirated by [php-waveform-png](https://github.com/afreiday/php-waveform-png) & [php-waveform-svg](https://github.com/afreiday/php-waveform-svg)
 
+##Example
+
+```bash
+$ bin/waveform-generator track.mp3 --png
+```
+
+ Will generate:
+ 
+ ![waveform](test/testFile/Ally_Calvine_-_Ally_Calvine_-_Oh_Happy_Day.png)
+
 ##LICENSE
 See `LICENSE` for more information
