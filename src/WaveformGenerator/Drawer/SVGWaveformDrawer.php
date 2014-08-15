@@ -4,7 +4,7 @@ namespace WaveformGenerator\Drawer;
 
 /**
  * Class SVGWaveformDrawer
- * @package WaveformGenerator\WaveformDrawer
+ * @package WaveformGenerator\Drawer
  */
 class SVGWaveformDrawer extends WaveformDrawer
 {

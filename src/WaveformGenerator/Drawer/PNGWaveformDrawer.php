@@ -4,7 +4,7 @@ namespace WaveformGenerator\Drawer;
 
 /**
  * Class PNGWaveformDrawer
- * @package WaveformGenerator\WaveformDrawer
+ * @package WaveformGenerator\Drawer
  */
 class PNGWaveformDrawer extends WaveformDrawer
 {

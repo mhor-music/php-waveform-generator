@@ -7,7 +7,7 @@ use WaveformGenerator\Reader\WavReader;
 
 /**
  * Class WaveformDrawer
- * @package WaveformGenerator\WaveformDrawer
+ * @package WaveformGenerator\Drawer
  */
 class WaveformDrawer
 {

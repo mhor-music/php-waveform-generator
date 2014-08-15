@@ -3,7 +3,6 @@
 namespace WaveformGenerator\Configuration;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
-use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Parser;
 
 /**
@@ -83,7 +82,7 @@ class WaveformConfiguration
 
     /**
      * @param  string                $foregroundColor
-     * @return waveformconfiguration
+     * @return WaveformConfiguration
      */
     public function setForegroundColor($foregroundColor)
     {
@@ -177,11 +176,7 @@ class WaveformConfiguration
         $configuration = array();
         if ($options['configuration'] && file_exists($options['configuration'])) {
             $yaml = new Parser();
-            try {
-                $configuration = $yaml->parse(file_get_contents($options['configuration']));
-            } catch (ParseException $e) {
-                printf("Unable to parse the YAML string: %s", $e->getMessage());
-            }
+            $configuration = $yaml->parse(file_get_contents($options['configuration']));
         }
 
         return array_merge($options, $configuration);

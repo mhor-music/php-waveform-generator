@@ -13,7 +13,7 @@ $ bin/waveform-generator track.mp3 --png
 
  Will generate:
  
- ![waveform](test/testFile/Ally_Calvine_-_Ally_Calvine_-_Oh_Happy_Day.png)
+ ![waveform](test/fixtures/Ally_Calvine_-_Ally_Calvine_-_Oh_Happy_Day.png)
 
 ##LICENSE
 See `LICENSE` for more information
